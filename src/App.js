@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookShelf from './bookshelf'
+import BookShelf from './shelfs'
 import Header from './header'
 import { Link, Route } from 'react-router-dom'
 import Search from './search'
@@ -11,7 +11,7 @@ class BooksApp extends React.Component {
     books: []
   }
   
-  moveBook = (book, shelf) => {
+  classBook = (book, shelf) => {
     if (this.state.books){
       BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf;
@@ -38,7 +38,7 @@ class BooksApp extends React.Component {
         <div>  
           <Header />
           <BookShelf 
-            onMoveBook={this.moveBook}
+            onClassBook={this.classBook}
             booksOnShelf={this.state.books}
           />          
           <div className="open-search">
@@ -51,7 +51,7 @@ class BooksApp extends React.Component {
         )} />
         {<Route path='/search' render={() => (
           <Search 
-            onMoveBook={this.moveBook}
+            onClassBook={this.classBook}
             booksOnShelf={this.state.books}
           />)} 
         />}

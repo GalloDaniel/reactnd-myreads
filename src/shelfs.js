@@ -1,31 +1,31 @@
 import React, { Component } from 'react'
 import sortBy from 'sort-by'
 import propTypes from 'prop-types'
-import Book from './book'
+import Book from './books'
 
 class BookShelf extends Component {
   static propTypes = {
     booksOnShelf: propTypes.array.isRequired,
-    onMoveBook: propTypes.func.isRequired
+    onClassBook: propTypes.func.isRequired
   }
   
   render() {
-    const shelves = ["currentlyReading", "wantToRead", "read"]
-    const shelveNames = ["Currently Reading", "Want To Read", "Read"]
+    const shelvesID = ["currentlyReading", "wantToRead", "read"]
+    const shelvesNames = ["Currently Reading", "Want To Read", "Read"]
 
     return (
 
       <div>
-        {shelves.map((shelf, index) => {
+        {shelvesID.map((shelf, index) => {
           return (
             <div key={index} className="list-books-content">
               <div className="bookshelf">
-                <h2 className="bookshelf-title">{shelveNames[index]}</h2>
+                <h2 className="bookshelf-title">{shelvesNames[index]}</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {this.props.booksOnShelf.sort(sortBy('title')).filter(book => book.shelf === shelf).map(book => (
                       <Book 
-                        onMoveBook={this.props.onMoveBook}
+                        onClassBook={this.props.onClassBook}
                         key={book.id}
                         book = {book}
                       />

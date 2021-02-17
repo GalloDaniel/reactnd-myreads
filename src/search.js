@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
-import Book from './book'
+import Book from './books'
 import sortBy from 'sort-by'
 import propTypes from 'prop-types'
 
 class Search extends Component {
     static propTypes = {
         booksOnShelf: propTypes.array.isRequired,
-        onMoveBook: propTypes.func.isRequired
+        onClassBook: propTypes.func.isRequired
     }
     
     state = {
@@ -18,7 +18,10 @@ class Search extends Component {
 
     updateQuery = (query) => {
         if (query === '') {
-            this.setState({query: '', books: []})
+            this.setState({
+                query: '', 
+                books: []
+            })
         } else {
             this.setState({ query: query.trim() })
             BooksAPI.search(query).then((books) => {
@@ -56,7 +59,7 @@ class Search extends Component {
                             <ol className="books-grid">
                                 {this.state.books.sort(sortBy('title')).map(book => (
                                 <Book
-                                onMoveBook={this.props.onMoveBook}
+                                onClassBook={this.props.onClassBook}
                                 key={book.id}
                                 book={book}
                                 />
