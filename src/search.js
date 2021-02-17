@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 import { Link } from 'react-router-dom'
-import Book from './books'
-import sortBy from 'sort-by'
 import propTypes from 'prop-types'
+import * as BooksAPI from './BooksAPI'
+import Book from './books'
 
 class Search extends Component {
     static propTypes = {
@@ -57,7 +56,7 @@ class Search extends Component {
                     <ol className="books-grid">
                         <div className="bookshelf-books">
                             <ol className="books-grid">
-                                {this.state.books.sort(sortBy('title')).map(book => (
+                                {this.state.books.map(book => (
                                 <Book
                                 onClassBook={this.props.onClassBook}
                                 key={book.id}
